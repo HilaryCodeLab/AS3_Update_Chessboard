@@ -1,7 +1,4 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from board import Board
 
 
 def print_hi(name):
@@ -24,35 +21,17 @@ def print_string():
     print(brdStr)
 
 
-def print_chessboard():
-
-    board_string = ""
-    board = [
-        ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
-        ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
-        ['.', '.', '.', '.', '.', '.', '.', '.'],
-        ['.', '.', '.', '.', '.', '.', '.', '.'],
-        ['.', '.', '.', '.', '.', '.', '.', '.'],
-        ['.', '.', '.', '.', '.', '.', '.', '.'],
-        ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-        ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
-
-    ]
-    board_string += "a b c d e f g h\n"
-    print(board_string)
-    for column in board:
-        for item in column:
-            print(item, end=" ")
-        print()
-
-    print("\n" + board_string)
-
-
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
     # print_string()
-    print_chessboard()
+    chessboard = Board()
+    # chessboard.write_file()
+    # chessboard.update_file()
+    # chessboard.convert_object()
+    chessboard.pickle_object()
+    chessboard.unpickle_into_object()
+
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
