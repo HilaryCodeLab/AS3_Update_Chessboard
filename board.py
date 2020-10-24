@@ -15,6 +15,7 @@ class Board:
         ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
 
     ]
+    board_string = "rnbqkbnpppppppp...............................PPPPPPPPRNBQKBNR"
 
     def pickle_object(self):
         # convert object into byte
@@ -29,14 +30,15 @@ class Board:
         infile = open(file_name, 'rb')
         new_list = pickle.load(infile)
         infile.close()
-        board_string = ""
-        board_string += "a b c d e f g h\n"
-        print(board_string)
-        for column in new_list:
-            for item in column:
-                print(item, end=" ")
-            print()
-        print("\n" + board_string)
+        print(new_list)
+        # board_string = ""
+        # board_string += "a b c d e f g h\n"
+        # print(board_string)
+        # for column in new_list:
+        #     for item in column:
+        #         print(item, end=" ")
+        #     print()
+        # print("\n" + board_string)
 
     def update_file(self):
         file_name = 'chess_board.txt'
@@ -48,5 +50,6 @@ class Board:
         # seek() locate the item you looking for by byte,
         # 0 is the beginining of line, 1 is current position, 2 is end of line
         # e.g. seek(12,0) means starting from the beginning of line, count 12 bit ahead to locate the position
+
 
 
