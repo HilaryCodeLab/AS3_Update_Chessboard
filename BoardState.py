@@ -55,11 +55,16 @@ class BoardState:
         possibleparts = 'PRHNBQAZ' if team == TEAM_WHITES else 'prhnbqaz'
         return self._repr[j * 8 + i] in possibleparts
 
+    def is_pawn(self):
+        part = "P" if TEAM_WHITES else "p"
+        print(part)
+
 
 if __name__ == '__main__':
     board = BoardState()
-    # board.team()
+    board.team()
     # board.team_str()
     # board.pick_team()
     # board.get_team(5,6)
     board.is_same_team(0, 0, -1)
+    board.is_pawn()
