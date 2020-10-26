@@ -2,26 +2,11 @@ from typing import List
 
 from board import Board
 
+file_name ='chess_board.txt'
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-def print_string():
-    brdStr = ""
-    # brdStr += " . . . . . . . ."
-    # print(brdStr)
-    brdStr += " a b c d e f g h\n"
-    my_list_of_lists = [list() for _ in range(8)]
-    (rows,columns) = (8, 8)
-    for r in rows:
-        # brdStr += int(8 - r) + ""
-        for c in columns:
-            item = my_list_of_lists[r][c]
-            brdStr += " ."
-        brdStr += "\n"
-    print(brdStr)
 
 
 def write_file():
@@ -32,8 +17,8 @@ def write_file():
     # print(len(board_string))
 
 
-def read_file_to_list():
-    file = open('chess_board.txt', mode='r')
+def read_file_to_list(file_name):
+    file = open(file_name, mode='r')
     board = file.read()
     file.close()
     my_list_of_lists: List[List[None]] = [list([None] * 8) for _ in range(8)]
@@ -53,13 +38,22 @@ def read_file_to_list():
         print()
     print("\n" + board_string)
 
-
+def update_chess_table():
+    file = open('chess_board.txt', mode='r+')
+    file.seek(9)
+    user_input = input("place your move: ")
+    file.write(user_input)
+    file.close()
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
     # write_file()
-    read_file_to_list()
+    read_file_to_list(file_name)
+    update_chess_table()
+    read_file_to_list(file_name)
+
+
     # print_string()
     # chessboard = Board()
     # chessboard.write_file()
@@ -70,4 +64,4 @@ if __name__ == '__main__':
 
 
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
