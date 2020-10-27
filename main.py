@@ -1,6 +1,6 @@
 from typing import List
+from BoardState import BoardState
 
-from board import Board
 
 file_name ='chess_board.txt'
 
@@ -38,6 +38,7 @@ def read_file_to_list(file_name):
         print()
     print("\n" + board_string)
 
+
 def update_chess_table():
     file = open('chess_board.txt', mode='r+')
     file.seek(9)
@@ -48,20 +49,16 @@ def update_chess_table():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    # print_hi('PyCharm')
     # write_file()
-    read_file_to_list(file_name)
-    update_chess_table()
-    read_file_to_list(file_name)
+    # read_file_to_list(file_name)
+    # update_chess_table()
+    # read_file_to_list(file_name)
+    board = BoardState()
+    # board.algebraic_notation()
+    board.algebraic_notation()
 
 
-    # print_string()
-    # chessboard = Board()
-    # chessboard.write_file()
-    # chessboard.update_file()
-    # chessboard.convert_object()
-    # chessboard.pickle_object()
-    # chessboard.unpickle_into_object()
 
 
 
