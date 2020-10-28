@@ -4,10 +4,6 @@ from BoardState import BoardState
 
 file_name ='chess_board.txt'
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
 
 def write_file():
     board_string = "rnbqkbnrpppppppp................................PPPPPPPPRNBQKBNR"
@@ -45,18 +41,17 @@ def update_chess_table():
     user_input = input("place your move: ")
     file.write(user_input)
     file.close()
+    read_file_to_list(file_name)
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # print_hi('PyCharm')
-    # write_file()
-    # read_file_to_list(file_name)
-    # update_chess_table()
-    # read_file_to_list(file_name)
+    write_file()
+    read_file_to_list(file_name)
     board = BoardState()
-    # board.algebraic_notation()
-    board.algebraic_notation()
+    board.move_piece('g2', 'g4')
+    board.move_piece('f1', 'd5')
+    read_file_to_list(file_name)
 
 
 
