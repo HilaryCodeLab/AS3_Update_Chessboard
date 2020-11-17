@@ -94,21 +94,105 @@ class BoardState:
                 else:
                     print("invalid move, same team cannot capture it own kind!")
 
-    def user_input(self):
-        move_from = input("move from: ")
-        move_to = input("move to: ")
+    def castling_move_queen(self, move_from, move_to):
         piece_from = self.locate_square_index(move_from)
+        piece_to = self.locate_square_index(move_to)
         piece = SQUARE_ARRAY[piece_from[0]][piece_from[1]][2]
-        if piece.isupper():
-            self.move_piece(move_from, move_to)
-            self.print_board()
-            self.user_input()
-        else:
-            print("White has to go first")
-        while piece.islower():
-            self.move_piece(move_from, move_to)
-            self.print_board()
-            break
+        go_to = SQUARE_ARRAY[piece_to[0]][piece_to[1]][2]
+        file = open(YOUR_FILE, mode='r+')
 
+        # validate if the move is made on the same side for white
 
+        if go_to:
+            # locate the piece from a position
+            file.seek(SQUARE_ARRAY[piece_from[0]][piece_from[1]][0])
+            file.write("O-O-O")
+
+            # locate the go-to position
+            file.seek(SQUARE_ARRAY[piece_to[0]][piece_to[1]][0])
+            file.write(piece)
+            file.close()
+
+    def castling_move_king(self, move_from, move_to):
+        piece_from = self.locate_square_index(move_from)
+        piece_to = self.locate_square_index(move_to)
+        piece = SQUARE_ARRAY[piece_from[0]][piece_from[1]][2]
+        go_to = SQUARE_ARRAY[piece_to[0]][piece_to[1]][2]
+        file = open(YOUR_FILE, mode='r+')
+
+        # validate if the move is made on the same side for white
+
+        if go_to:
+            # locate the piece from a position
+            file.seek(SQUARE_ARRAY[piece_from[0]][piece_from[1]][0])
+            file.write("O-O")
+
+            # locate the go-to position
+            file.seek(SQUARE_ARRAY[piece_to[0]][piece_to[1]][0])
+            file.write(piece)
+            file.close()
+
+    def is_castling_move_white(self):
+        self.castling_move_queen('a1', 'd1')
+        self.castling_move_queen('e1', 'c1')
+        self.print_board()
+
+    def is_castling_move_black(self):
+        self.castling_move_queen('a8', 'd8')
+        self.castling_move_queen('e8', 'c8')
+        self.print_board()
+
+    def is_castling_move_white_ks(self):
+        self.castling_move_king('h1', 'f1')
+        self.castling_move_king('e1', 'g1')
+        self.print_board()
+
+    def is_castling_move_black_ks(self):
+        self.castling_move_king('h8', 'f8')
+        self.castling_move_king('e8', 'g8')
+        self.print_board()
+
+    def user_input(self):
+        # establish an infinite loop until player decide to exit the game
+
+        while True:
+            print("press q to exit the game")
+            move_from = input("move from: ")
+            if move_from.lower() == 'q':
+                print("Thank you for playing the game")
+                break
+            move_to = input("move to: ")
+            piece_from = self.locate_square_index(move_from)
+            piece = SQUARE_ARRAY[piece_from[0]][piece_from[1]][2]
+
+            while True:
+                if move_from == 'a1' and move_to == 'd1':
+                    self.is_castling_move_white()
+                    print('white castling move on queen side')
+                    break
+                if move_from == 'a8' and move_to == 'd8':
+                    self.is_castling_move_black()
+                    print('black castling move on queen side')
+                    break
+                if move_from == 'h1' and move_to == 'f1':
+                    self.is_castling_move_white_ks()
+                    print('white castling move on king side')
+                    break
+                if move_from == 'h8' and move_to == 'f8':
+                    self.is_castling_move_black_ks()
+                    print('black castling move on king side')
+                    break
+                if piece.isupper():
+                    self.move_piece(move_from, move_to)
+                    self.print_board()
+                    break
+
+                if not piece.isupper():
+                    print("White has to go first")
+                    break
+
+                if piece.islower():
+                    self.move_piece(move_from, move_to)
+                    self.print_board()
+                    break
 
