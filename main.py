@@ -20,6 +20,15 @@ def read_file_to_list(file_name):
     return read
 
 
+# while True:
+#     write_file(file_name)
+#     print('Initialize Board')
+#     read_file_to_list(file_name)
+#     board = BoardState()
+#     board.print_board()
+#     board.user_input()
+#     write_file(file_name)
+
 # def print_board():
 #     file = open(file_name, mode='r')
 #     board = file.read()
